@@ -30,6 +30,19 @@ hspell to program do kontroli pisowni w jêzyku hebrajskim. Udostêpnia
 w wiêkszo¶ci zgodny ze spellem interfejs (podaj±cy listê b³êdnych s³ów
 w tek¶cie wej¶ciowym), ale mo¿e tak¿e sugerowaæ poprawki (-c).
 
+%package devel
+Summary:	Header files and static hspell library
+Summary(pl):	Pliki nag³ówkowe i biblioteka statyczna hspell
+Group:		Development/Libraries
+# doesn't require base (until shared library is made)
+
+%description devel
+Header files and static hspell (Hebrew SPELLer) library.
+
+%description devel -l pl
+Pliki nag³ówkowe i biblioteka statyczna hspell (do kontroli
+pisowni w jêzyku hebrajskim).
+
 %prep
 %setup -q
 
@@ -57,4 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_datadir}/%{name}
 %{_mandir}/man1/*
-%{_mandir}/man3/*
+
+%files devel
+%defattr(644,root,root,755)
+%{_libdir}/libhspell.a
+%{_includedir}/*.h
+%{_mandir}/man3/hspell.3*
