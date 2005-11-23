@@ -3,14 +3,16 @@ Summary:	Hspell - a free Hebrew spell checker
 Summary(pl):	Hspell - wolnodostêpny program do kontroli pisowni hebrajskiej
 Name:		hspell
 Version:	0.9
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Text
 # Source0Download: http://ivrix.org.il/projects/spell-checker/download.html
 Source0:	http://ivrix.org.il/projects/spell-checker/%{name}-%{version}.tar.gz
 # Source0-md5:	6ebae9cfe721c6563075095fa73f69ac
 URL:		http://ivrix.org.il/projects/spell-checker/
+BuildRequires:	awk
 BuildRequires:	rpm-perlprov
+BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -45,13 +47,14 @@ pisowni w jêzyku hebrajskim).
 
 %prep
 %setup -q
+sed -i -e 's|#!.*|#!/bin/awk -f|g' wzip
 
 %build
 %configure
 %{__make} \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -DDICTIONARY_BASE=\\\"%{_datadir}/hebrew.wgz\\\"" \
-	LDFLAGS="-fPIC %{rpmldflags}"
+	CFLAGS="%{rpmcflags} -fPIC -DDICTIONARY_BASE=\\\"%{_datadir}/hebrew.wgz\\\"" \
+	LDFLAGS="%{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
