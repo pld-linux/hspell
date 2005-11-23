@@ -2,13 +2,13 @@
 Summary:	Hspell - a free Hebrew spell checker
 Summary(pl):	Hspell - wolnodostêpny program do kontroli pisowni hebrajskiej
 Name:		hspell
-Version:	0.8
+Version:	0.9
 Release:	1
 License:	GPL
 Group:		Applications/Text
 # Source0Download: http://ivrix.org.il/projects/spell-checker/download.html
 Source0:	http://ivrix.org.il/projects/spell-checker/%{name}-%{version}.tar.gz
-# Source0-md5:	67f402162bdb4f5e7b3099572de1342e
+# Source0-md5:	6ebae9cfe721c6563075095fa73f69ac
 URL:		http://ivrix.org.il/projects/spell-checker/
 BuildRequires:	rpm-perlprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -51,7 +51,7 @@ pisowni w jêzyku hebrajskim).
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags} -DDICTIONARY_BASE=\\\"%{_datadir}/hebrew.wgz\\\"" \
-	LDFLAGS="%{rpmldflags}"
+	LDFLAGS="-fPIC %{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
