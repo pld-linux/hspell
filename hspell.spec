@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Hspell - a free Hebrew spell checker
-Summary(pl):	Hspell - wolnodostêpny program do kontroli pisowni hebrajskiej
+Summary(pl.UTF-8):   Hspell - wolnodostÄ™pny program do kontroli pisowni hebrajskiej
 Name:		hspell
 Version:	1.0
 Release:	1
@@ -20,21 +20,21 @@ hspell is a Hebrew SPELLer. It currently provides a mostly spell-like
 interface (gives the list of wrong words in the input text), but can
 also suggest corrections (-c).
 
-%description -l he
-hspell äåà îàééú òáøé, äîñô÷ (áéğúééí) îğù÷ ãîåé-spell - ôåìè øùéîä ùì
-äîéìéí äùâåéåú äîåôéòåú á÷ìè. æå âøñä ôåòìú, àåìí äéà àéğğä ùìîä òãééï
-- îéìéí ú÷ğéåú øáåú àéğï îåëøåú åäï îãååçåú ëùâéàåú. ä÷ôãğå îàåã
-òì-îğú ùîéìéí ùäéà *ëï* îëéøä éàåéúå ùëåğä òì-ôé ëììé äà÷ãîéä äòáøéú
-ìëúéá çñø ğé÷åã )"ëúéá îìà"(.
+%description -l he.UTF-8
+hspell ×”×•× ×××™×™×ª ×¢×‘×¨×™, ×”××¡×¤×§ (×‘×™× ×ª×™×™×) ×× ×©×§ ×“××•×™-spell - ×¤×•×œ×˜ ×¨×©×™××” ×©×œ
+×”××™×œ×™× ×”×©×’×•×™×•×ª ×”××•×¤×™×¢×•×ª ×‘×§×œ×˜. ×–×• ×’×¨×¡×” ×¤×•×¢×œ×ª, ××•×œ× ×”×™× ××™× × ×” ×©×œ××” ×¢×“×™×™×Ÿ
+- ××™×œ×™× ×ª×§× ×™×•×ª ×¨×‘×•×ª ××™× ×Ÿ ××•×›×¨×•×ª ×•×”×Ÿ ××“×•×•×—×•×ª ×›×©×’×™××•×ª. ×”×§×¤×“× ×• ×××•×“
+×¢×œ-×× ×ª ×©××™×œ×™× ×©×”×™× *×›×Ÿ* ××›×™×¨×” ×™××•×™×ª×• ×©×›×•× ×” ×¢×œ-×¤×™ ×›×œ×œ×™ ×”××§×“××™×” ×”×¢×‘×¨×™×ª
+×œ×›×ª×™×‘ ×—×¡×¨ × ×™×§×•×“ )"×›×ª×™×‘ ××œ×"(.
 
-%description -l pl
-hspell to program do kontroli pisowni w jêzyku hebrajskim. Udostêpnia
-w wiêkszo¶ci zgodny ze spellem interfejs (podaj±cy listê b³êdnych s³ów
-w tek¶cie wej¶ciowym), ale mo¿e tak¿e sugerowaæ poprawki (-c).
+%description -l pl.UTF-8
+hspell to program do kontroli pisowni w jÄ™zyku hebrajskim. UdostÄ™pnia
+w wiÄ™kszoÅ›ci zgodny ze spellem interfejs (podajÄ…cy listÄ™ bÅ‚Ä™dnych sÅ‚Ã³w
+w tekÅ›cie wejÅ›ciowym), ale moÅ¼e takÅ¼e sugerowaÄ‡ poprawki (-c).
 
 %package devel
 Summary:	Header files and static hspell library
-Summary(pl):	Pliki nag³ówkowe i biblioteka statyczna hspell
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe i biblioteka statyczna hspell
 Group:		Development/Libraries
 Requires:	zlib-devel
 # doesn't require base (until shared library is made)
@@ -42,9 +42,9 @@ Requires:	zlib-devel
 %description devel
 Header files and static hspell (Hebrew SPELLer) library.
 
-%description devel -l pl
-Pliki nag³ówkowe i biblioteka statyczna hspell (do kontroli
-pisowni w jêzyku hebrajskim).
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe i biblioteka statyczna hspell (do kontroli
+pisowni w jÄ™zyku hebrajskim).
 
 %prep
 %setup -q
