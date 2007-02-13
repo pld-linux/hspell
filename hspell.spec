@@ -1,6 +1,6 @@
 %include	/usr/lib/rpm/macros.perl
 Summary:	Hspell - a free Hebrew spell checker
-Summary(pl.UTF-8):   Hspell - wolnodostępny program do kontroli pisowni hebrajskiej
+Summary(pl.UTF-8):	Hspell - wolnodostępny program do kontroli pisowni hebrajskiej
 Name:		hspell
 Version:	1.0
 Release:	1
@@ -34,7 +34,7 @@ w tekście wejściowym), ale może także sugerować poprawki (-c).
 
 %package devel
 Summary:	Header files and static hspell library
-Summary(pl.UTF-8):   Pliki nagłówkowe i biblioteka statyczna hspell
+Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteka statyczna hspell
 Group:		Development/Libraries
 Requires:	zlib-devel
 # doesn't require base (until shared library is made)
