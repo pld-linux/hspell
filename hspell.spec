@@ -2,16 +2,18 @@
 Summary:	Hspell - a free Hebrew spell checker
 Summary(pl.UTF-8):	Hspell - wolnodostępny program do kontroli pisowni hebrajskiej
 Name:		hspell
-Version:	1.0
-Release:	3
-License:	GPL
+Version:	1.3
+Release:	1
+License:	AGPL v3
 Group:		Applications/Text
-# Source0Download: http://ivrix.org.il/projects/spell-checker/download.html
-Source0:	http://ivrix.org.il/projects/spell-checker/%{name}-%{version}.tar.gz
-# Source0-md5:	3e12fa383c2cfd430918d115f33f9841
-URL:		http://ivrix.org.il/projects/spell-checker/
+# Source0Download: http://hspell.ivrix.org.il/download.html
+Source0:	http://hspell.ivrix.org.il/%{name}-%{version}.tar.gz
+# Source0-md5:	351850c9f6974a709dd092a2d1063e4a
+URL:		http://hspell.ivrix.org.il/
 BuildRequires:	awk
+BuildRequires:	perl-base
 BuildRequires:	rpm-perlprov
+BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -32,51 +34,94 @@ hspell to program do kontroli pisowni w języku hebrajskim. Udostępnia
 w większości zgodny ze spellem interfejs (podający listę błędnych słów
 w tekście wejściowym), ale może także sugerować poprawki (-c).
 
+%package multispell
+Summary:	Multispell - merging results from two speller programs
+Summary(pl.UTF-8):	Multispell - łączenie wyników z dwóch programów sprawdzających pisownię
+License:	Public Domain
+Group:		Applications/Text
+Requires:	%{name} = %{version}-%{release}
+Requires:	ispell
+
+%description multispell
+Multispell is a program that lets your editor talk to two spellers
+simultaneously. It launches two speller programs, one Hebrew (hspell),
+one English (ispell), and merges their results.
+
+%description multispell -l pl.UTF-8
+Multispell to program pozwalający na jednoczesną współpracę z dwoma
+programami kontrolującymi pisownię. Uruchamia dwa programy (hspell dla
+języka hebrajskiego i ispell dla języka angielskiego) i łączy ich
+wyniki.
+
 %package devel
-Summary:	Header files and static hspell library
-Summary(pl.UTF-8):	Pliki nagłówkowe i biblioteka statyczna hspell
+Summary:	Header files for hspell library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki hspell
 Group:		Development/Libraries
+Requires:	%{name} = %{version}-%{release}
 Requires:	zlib-devel
-# doesn't require base (until shared library is made)
 
 %description devel
-Header files and static hspell (Hebrew SPELLer) library.
+Header files for hspell (Hebrew SPELLer) library.
 
 %description devel -l pl.UTF-8
-Pliki nagłówkowe i biblioteka statyczna hspell (do kontroli
-pisowni w języku hebrajskim).
+Pliki nagłówkowe biblioteki hspell (do kontroli pisowni w języku
+hebrajskim).
+
+%package static
+Summary:	Static hspell library
+Summary(pl.UTF-8):	Statyczna biblioteka hspell
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static hspell library.
+
+%description static -l pl.UTF-8
+Statyczna biblioteka hspell.
 
 %prep
 %setup -q
-sed -i -e 's|#!.*|#!/bin/awk -f|g' wzip
+
+%{__sed} -i -e '1s|#!.*|#!/bin/awk -f|g' wzip
 
 %build
-%configure
-%{__make} \
-	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fPIC -DDICTIONARY_BASE=\\\"%{_datadir}/hebrew.wgz\\\"" \
-	LDFLAGS="%{rpmldflags}"
+%configure \
+	--enable-shared
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	PREFIX=%{_prefix} \
-	MAN1=%{_mandir}/man1 \
-	MAN3=%{_mandir}/man3
+	STRIP=:
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
+
 %files
 %defattr(644,root,root,755)
-%doc LICENSE README TODO WHATSNEW
-%attr(755,root,root) %{_bindir}/*
-%{_datadir}/%{name}
-%{_mandir}/man1/*
+%doc LICENSE README WHATSNEW
+%attr(755,root,root) %{_bindir}/hspell
+%attr(755,root,root) %{_bindir}/hspell-i
+%attr(755,root,root) %{_libdir}/libhspell.so.0
+%{_datadir}/hspell
+%{_mandir}/man1/hspell.1*
+
+%files multispell
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/multispell
 
 %files devel
 %defattr(644,root,root,755)
-%{_libdir}/libhspell.a
-%{_includedir}/*.h
+%attr(755,root,root) %{_libdir}/libhspell.so
+%{_includedir}/hspell.h
+%{_includedir}/linginfo.h
 %{_mandir}/man3/hspell.3*
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libhspell.a
