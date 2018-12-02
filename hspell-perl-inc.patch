@@ -1,0 +1,21 @@
+--- hspell-1.4/pmerge.orig	2012-02-25 21:00:42.000000000 +0100
++++ hspell-1.4/pmerge	2018-12-02 11:32:56.837010378 +0100
+@@ -8,7 +8,7 @@
+ use IO::File;
+ use Carp;
+ 
+-require "PrefixBits.pl";
++require "./PrefixBits.pl";
+ 
+ # "perl -w" warns about variables only used once (it assumes they are a
+ # typo). This ugliness gets rid of this warning. Is there a more sensible way?
+--- hspell-1.4/genprefixes.pl.orig	2003-09-01 00:13:46.000000000 +0200
++++ hspell-1.4/genprefixes.pl	2018-12-02 11:34:44.333675817 +0100
+@@ -1,6 +1,6 @@
+ #!/usr/bin/perl -w
+ 
+-require "PrefixBits.pl";
++require "./PrefixBits.pl";
+ 
+ sub find_prefixes {
+ 	my $INQUISITIVE_HE=shift;
