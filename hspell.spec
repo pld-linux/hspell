@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.perl
 Summary:	Hspell - a free Hebrew spell checker
 Summary(pl.UTF-8):	Hspell - wolnodostępny program do kontroli pisowni hebrajskiej
 Name:		hspell
