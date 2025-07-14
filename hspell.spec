@@ -81,7 +81,7 @@ Statyczna biblioteka hspell.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %{__sed} -i -e '1s|#!.*|#!/bin/awk -f|g' wzip
 
