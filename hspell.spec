@@ -2,7 +2,7 @@ Summary:	Hspell - a free Hebrew spell checker
 Summary(pl.UTF-8):	Hspell - wolnodostępny program do kontroli pisowni hebrajskiej
 Name:		hspell
 Version:	1.4
-Release:	1
+Release:	2
 License:	AGPL v3
 Group:		Applications/Text
 # Source0Download: http://hspell.ivrix.org.il/download.html
